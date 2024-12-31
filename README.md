@@ -1,4 +1,25 @@
 # dsdump
+
+* Update: `20241231`
+
+## Repo
+
+* Current = Crifan 
+  * https://github.com/crifan/dsdump
+* Original = fork from
+  * https://github.com/paradiseduo/dsdump
+
+## Function
+
+Crifan optimize dsdump output:
+
+* Optimize: output result to
+  * [x] objc: `protocol`, `class`, `category`
+  * [x] swift: `protocol`, `class + enum + struct`
+* Fixbug: out multiple objc class to single file
+
+---
+
 Now you can use [resymbol](https://github.com/paradiseduo/resymbol) replace this tool.
 
 An improved nm + objc/swift class-dump ([writeup](https://derekselander.github.io/dsdump/))
