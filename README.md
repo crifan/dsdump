@@ -18,6 +18,21 @@ Crifan optimize dsdump output:
   * [x] swift: `protocol`, `class + enum + struct`
 * Fixbug: out multiple objc class to single file
 
+## Usage
+
+```bash
+python3 dsdump.py -d -i inputMachOFile -o outputFolder
+```
+
+* parameter
+  * `-i inputMachOFile`
+    * input Mach-O File
+  * `-d` == `----demangle`
+    * `Demangle Swift and C++ symbols in print symbol mode`
+      * current only used in `ObjC`, not (no need) use in `Swift`
+  * `-o outputFolder`
+    * output folder
+
 ---
 
 Now you can use [resymbol](https://github.com/paradiseduo/resymbol) replace this tool.
