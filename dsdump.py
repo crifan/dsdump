@@ -1,7 +1,7 @@
 
 # Function: Optimized dsdump, extract dsdump to single ObjC and swift files
 # Author: Crifan Li
-# Update: 20241231
+# Update: 20250101
 # Usage
 #   python3 dsdump.py -d -i inputMachOFile -o outputFolder
 
@@ -207,11 +207,15 @@ def dumpObjc_crifan_protol(out):
     # protocolEndP = r"@protocol \w+.+@end"
     protocolEndP = r"\@protocol (?P<protocolName>\w+).+?\@end"
     # protocolEndP = r"\@protocol (?P<protocolName>\w+).+?\@end\n*" # for debug: compare with original
+    # protocolEndP = r"\@protocol \w+.+?\@end"
     logging.debug("protocolEndP=%s", protocolEndP)
     # protocolStrList = re.findall(protocolEndP, out, flags=re.DOTALL)
     protocolStrIterator = re.finditer(protocolEndP, out, flags=re.DOTALL)
     protocolStrList = list(protocolStrIterator)
     logging.debug("protocolStrList=%s", protocolStrList)
+
+    # for eachProtocolStr in protocolStrList:
+    #     logging.info("eachProtocolStr=%s", eachProtocolStr)
 
     for curIdx, eachProtocolMatch in enumerate(protocolStrList):
         curNum = curIdx + 1

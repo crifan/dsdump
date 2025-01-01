@@ -4,3 +4,4 @@ __pycache__/
 debug/
 debugging/
 output/
+.vscode/
