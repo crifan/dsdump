@@ -23,9 +23,9 @@ then it will:
 * update/rename Swift function names
   * also ouput rename result to file: `{YourMachOFile_folder}/output/renameResult/{YourMachOFile}_renameResult_{YYMMDD_HHMMSS}.json`
 
-### Effect
+## Effect
 
-##### sub_xxx
+### sub_xxx
 
 * function name
   * before
@@ -73,7 +73,7 @@ then it will:
       }
       ```
 
-#### Wrong Lumina Function name
+### Wrong Lumina Function name
 
 * function name
   * before
