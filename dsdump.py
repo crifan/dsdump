@@ -1,7 +1,7 @@
 
 # Function: Optimized dsdump, extract dsdump to single ObjC and swift files
 # Author: Crifan Li
-# Update: 20250101
+# Update: 20250113
 # Usage
 #   python3 dsdump.py -d -i inputMachOFile -o outputFolder
 
@@ -131,15 +131,15 @@ def initOutputFolder(outputFolder):
 
 def dumpObjc_origin(out, outputFolder, demangle):
     arr = out.split('\n\n\n')
-    # saveJsonToFile("debugging/objc/arr.json", arr)
+    # saveJsonToFile("debug/debugging/objc/arr.json", arr)
     # 分割输出内容
     protocols = arr[0].split('\n')
     classes = arr[1:-1]
     categares = arr[-1].split('\n')
 
-    # saveJsonToFile("debugging/objc/protocols.json", protocols)
-    # saveJsonToFile("debugging/objc/classes.json", classes)
-    # saveJsonToFile("debugging/objc/categares.json", categares)
+    # saveJsonToFile("debug/debugging/objc/protocols.json", protocols)
+    # saveJsonToFile("debug/debugging/objc/classes.json", classes)
+    # saveJsonToFile("debug/debugging/objc/categares.json", categares)
 
     # 输出protocols
     start = -1
@@ -323,7 +323,7 @@ def dumpObjectiveC(inputfile, outputFolder, arches, demangle):
     strline = f'./dsdump -a {arches} --objc --verbose=5 "{inputfile}"'
     p = subprocess.Popen(strline, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out = p.communicate()[0].decode('utf-8', 'ignore')
-    saveTextToFile("debugging/objc/out.coffee", out)
+    # saveTextToFile("debug/debugging/objc/out.coffee", out)
 
     # dumpObjc_origin(out, outputFolder, demangle)
     summaryDict = dumpObjc_crifan(out)
@@ -331,7 +331,7 @@ def dumpObjectiveC(inputfile, outputFolder, arches, demangle):
 
 def dumpSwift_origin(out, outputFolder):
     arr = out.split('\n')
-    saveJsonToFile("debugging/swift/arr.txt", arr)
+    # saveJsonToFile("debug/debugging/swift/arr.txt", arr)
 
     className = ''
     start = -1
@@ -509,7 +509,7 @@ def dumpSwift(inputfile, outputFolder, arches, demangle):
     strline = f'./dsdump -a {arches} --swift --verbose=5 "{inputfile}"'
     p = subprocess.Popen(strline, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out = p.communicate()[0].decode('utf-8', 'ignore')
-    saveTextToFile("debugging/swift/out.coffee", out)
+    # saveTextToFile("debug/debugging/swift/out.coffee", out)
 
     # dumpSwift_origin(out, outputFolder)
     summaryDict_swift = dumpSwift_crifan(out)
