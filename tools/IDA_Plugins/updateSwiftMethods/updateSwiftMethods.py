@@ -1,6 +1,6 @@
 # Function: IDA Plugin, from pasring input dsdump dumped Swift files, then update/rename Swift methods function into IDA
 # Author: Crifan Li
-# Update: 20250110
+# Update: 20250113
 
 import re
 import os
@@ -28,7 +28,8 @@ import ida_funcs
 # Config & Settings & Const
 ################################################################################
 
-inputSwiftClassFolder = "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/"
+crifanDsdumpRootFoler = "/xxx/headers/KonaPayCore_header_dsdump_crifan/"
+inputSwiftClassFolder = os.path.join(crifanDsdumpRootFoler, "swift", "class")
 
 logUsePrint = True
 logUseLogging = False
@@ -1936,31 +1937,36 @@ if logUseLogging:
 
 CommonUtil.logInfo("inputSwiftClassFolder=%s", inputSwiftClassFolder)
 
-swiftFilenameList = CommonUtil.listSubfolderFiles(inputSwiftClassFolder, isIncludeFolder=False, isRecursive=False)
+swiftFileFullPathList = CommonUtil.listSubfolderFiles(inputSwiftClassFolder, isIncludeFolder=False, isRecursive=False)
+CommonUtil.logDebug("swiftFileFullPathList=%s", swiftFileFullPathList)
 
 # # for debug
 # swiftFilenameList = [
 #   # for debug: nullsub
-#   "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/KonaPayCore.ApiGwRequest.swift",
+#   "KonaPayCore.ApiGwRequest.swift",
 
 #   # for debug: renamed 0xb6400 getMap_recordNumber_SFI_recordValue_B6400
-#   "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/KonaPayCore.ApiCardRecord.swift",
+#   "KonaPayCore.ApiCardRecord.swift",
 
-#   "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/KonaPayCore.KonaPayServiceImpl.swift",
-#   "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/KonaPayCore.CardRecordEntity.swift",
-#   "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/KonaPayCore.RewardNf.swift",
-#   "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/KonaPayCore.AdditionalInfo.swift",
-#   "/xxx/headers/KonaPayCore_header_dsdump_crifan/swift/class/KonaPayCore.LdeEntity.swift",
+#   "KonaPayCore.KonaPayServiceImpl.swift",
+#   "KonaPayCore.CardRecordEntity.swift",
+#   "KonaPayCore.RewardNf.swift",
+#   "KonaPayCore.AdditionalInfo.swift",
+#   "KonaPayCore.LdeEntity.swift",
 # ]
+# CommonUtil.logDebug("swiftFilenameList=%s", swiftFilenameList)
+# swiftFileFullPathList = []
+# for eachSwiftFilename in swiftFilenameList:
+#   eachSwiftFileFullPath = os.path.join(crifanDsdumpRootFoler, eachSwiftFilename)
+#   swiftFileFullPathList.append(eachSwiftFileFullPath)
+# CommonUtil.logDebug("eachSwiftFileFullPath=%s", eachSwiftFileFullPath)
 
-CommonUtil.logDebug("swiftFilenameList=%s", swiftFilenameList)
-
-swiftFilenameNum = len(swiftFilenameList)
+swiftFilenameNum = len(swiftFileFullPathList)
 CommonUtil.logInfo("swiftFilenameNum=%d", swiftFilenameNum)
 
 allSwiftFileRenameResultDictList = []
 
-for curNum, eachSwiftFileFullPath in enumerate(swiftFilenameList, start=1):
+for curNum, eachSwiftFileFullPath in enumerate(swiftFileFullPathList, start=1):
   swiftFileFolder, swiftFileName = os.path.split(eachSwiftFileFullPath)
   # CommonUtil.logDebug("swiftFileFolder=%s, swiftFileName=%s", swiftFileFolder, swiftFileName)
   CommonUtil.logSubStr("[%d] %s" % (curNum, swiftFileName))
