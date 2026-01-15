@@ -1,6 +1,6 @@
 # dsdump
 
-* Update: `20241231`
+* Update: `20260115`
 
 ## Repo
 
@@ -20,8 +20,11 @@ Crifan optimize dsdump output:
 
 ## Usage
 
+* Note: **MUST** change to folder of `dsdump.py`, then run following command:
+
 ```bash
-python3 dsdump.py -d -i inputMachOFile -o outputFolder
+cd {folder_of_dsdump}
+python3 dsdump.py -d -i {inputMachOFile} -o {outputFolder}
 ```
 
 * parameter
