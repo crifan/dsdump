@@ -36,6 +36,10 @@ python3 dsdump.py -d -i {inputMachOFile} -o {outputFolder}
   * `-o outputFolder`
     * output folder
 
+## TODO
+
+* [ ] fix internal use `./dsdump` of relative path, change to absolute path, to not need user must change to folder of dsdump
+
 ---
 
 Now you can use [resymbol](https://github.com/paradiseduo/resymbol) replace this tool.
