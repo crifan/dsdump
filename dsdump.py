@@ -1,7 +1,7 @@
 
 # Function: Optimized dsdump, extract dsdump to single ObjC and swift files
 # Author: Crifan Li
-# Update: 20250113
+# Update: 20260116
 # Usage
 #   python3 dsdump.py -d -i inputMachOFile -o outputFolder
 
@@ -77,7 +77,7 @@ def getPyFolder(inputPyFile):
 
 print('''
     .         .                   
-    |         |                    {Version: 2024.12.31}
+    |         |                    {Version: 2026.01.16}
  .-.| .--. .-.| .  . .--.--. .,-. 
 (   | `--.(   | |  | |  |  | |   )
  `-'`-`--' `-'`-`--`-'  '  `-|`-' 
@@ -320,7 +320,9 @@ def dumpObjc_crifan(out):
     return summaryDict_objc
 
 def dumpObjectiveC(inputfile, outputFolder, arches, demangle):
-    strline = f'./dsdump -a {arches} --objc --verbose=5 "{inputfile}"'
+    curPyFolder = getPyFolder(__file__)
+    # strline = f'./dsdump -a {arches} --objc --verbose=5 "{inputfile}"'
+    strline = f'{curPyFolder}/dsdump -a {arches} --objc --verbose=5 "{inputfile}"'
     p = subprocess.Popen(strline, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out = p.communicate()[0].decode('utf-8', 'ignore')
     # saveTextToFile("debug/debugging/objc/out.coffee", out)
@@ -506,7 +508,9 @@ def dumpSwift_crifan(out):
     return summaryDict_swift
 
 def dumpSwift(inputfile, outputFolder, arches, demangle):
-    strline = f'./dsdump -a {arches} --swift --verbose=5 "{inputfile}"'
+    curPyFolder = getPyFolder(__file__)
+    # strline = f'./dsdump -a {arches} --swift --verbose=5 "{inputfile}"'
+    strline = f'{curPyFolder}/dsdump -a {arches} --swift --verbose=5 "{inputfile}"'
     p = subprocess.Popen(strline, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out = p.communicate()[0].decode('utf-8', 'ignore')
     # saveTextToFile("debug/debugging/swift/out.coffee", out)

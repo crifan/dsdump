@@ -1,6 +1,6 @@
 # dsdump
 
-* Update: `20260115`
+* Update: `20260116`
 
 ## Repo
 
@@ -38,7 +38,7 @@ python3 dsdump.py -d -i {inputMachOFile} -o {outputFolder}
 
 ## TODO
 
-* [ ] fix internal use `./dsdump` of relative path, change to absolute path, to not need user must change to folder of dsdump
+* [x] fix internal use `./dsdump` of relative path, change to absolute path, to not need user must change to folder of dsdump
 
 ---
 

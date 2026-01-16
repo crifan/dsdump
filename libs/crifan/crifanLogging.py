@@ -30,7 +30,7 @@ try:
     from crifanFile import createFolder, getFilenameNoPointSuffix, getPyFolder
     from crifanDatetime import getCurDatetimeStr
 except ImportError:
-    print("! If import Crifan lib failed, please manually copy related functions (createFolder, getFilenameNoPointSuffix, getCurDatetimeStr) into you python file")
+    # print("! If import Crifan lib failed, please manually copy related functions (createFolder, getFilenameNoPointSuffix, getCurDatetimeStr) into you python file")
 
     import os
     from datetime import datetime,timedelta
